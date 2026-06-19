@@ -57,10 +57,7 @@ $('#q2').click(function(){
 // 第3問  id='q3'の要素をクリックしたらこの要素の前後とこの要素内の前後にテキストを挿入せよ。
 $('#q3').click(function(){
 
-   $(this).before('DOMの前');
-   $(this).prepend('DOMの中の前');
-   $(this).append('DOMの中の後');
-  $(this).after('DOMの後');
+   $(this).before('DOMの前').prepend('DOMの中の前').append('DOMの中の後').after('DOMの後');
 });
 // 第4問  id='q4'の要素をクリックしたらこの要素にlargeというクラスを付与せよ。
 $('#q4').click(function(){
