@@ -17,10 +17,17 @@
   </div>
   <script src="../../common/js/jquery.js"></script>
   <script>
+    function kantoPokeId() {
+      return Math.floor(Math.random() * 151) + 1;
+    }
+
+    function throwBall() {
+      return Math.floor(10 * Math.random());
+    }
     //探す→捕まえる・逃げる
     $('#pokemon_search').click(function () {
       $.ajax({
-        url: "https://pokeapi.co/api/v2/pokemon/" + (Math.floor(Math.random() * 151) + 1),
+        url: "https://pokeapi.co/api/v2/pokemon/" + kantoPokeId(),
         method: 'GET',
         dataType: 'json'
       })
@@ -41,10 +48,12 @@
             })
             .fail(function (err) {
               console.error('日本語名の取得に失敗', err);
+              alert("日本語名の取得に失敗");
             });
         })
         .fail(function (err) {
-          console.error('エラーが発生しました', err);
+          console.error('接続エラーが発生しました', err);
+          alert("接続エラーが発生しました");
         });
     });
 
@@ -57,7 +66,7 @@
       })
         .done(function (res) {
           // 捕まえる成功判定
-          if (Math.floor(10 * Math.random()) > 4) {
+          if (throwBall() > 4) {
             console.log('モンスターボール取得成功！', res);
             const ballUrl = res.sprites.default;
 
@@ -68,7 +77,8 @@
           }
         })
         .fail(function (err) {
-          console.error('エラーが発生しました', err);
+          console.error('モンスターボールの取得に失敗しました', err);
+          alert("モンスターボールの取得に失敗しました");
         });
     });
 
